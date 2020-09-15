@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'apps.repuestos',
     'apps.trabajos',
     'apps.turnos',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'trabajo_final_sigatam.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'BD_SIGATAM',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
