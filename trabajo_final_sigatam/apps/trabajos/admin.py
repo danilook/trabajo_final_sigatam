@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Trabajo,Presupuesto
 
-# Register your models here.
+admin.site.register(Trabajo)
+admin.site.register(Presupuesto)
