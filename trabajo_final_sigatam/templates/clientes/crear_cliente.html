@@ -1,0 +1,12 @@
+{% extends 'index.html'%}
+
+{%block titulo%}
+    Creacion de clientes
+{%endblock titulo%}
+{% block body%}
+    <form method="POST">
+        {% csrf_token %}
+        {{cliente_form.as_p}}
+        <button type="submit" >Crear</button>
+    </form>
+{% endblock body %}

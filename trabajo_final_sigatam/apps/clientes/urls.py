@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import Home
+from .views import crearCliente
+
 
 urlpatterns =[
-   path('',Home, name= 'index')
+    path('crear_cliente/', crearCliente, name =  'crear_cliente')
 ]
