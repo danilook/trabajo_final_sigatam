@@ -1,0 +1,42 @@
+{% extends 'index.html'%}
+
+{%block titulo%}
+ listado de Clientes
+{%endblock titulo%}
+
+{%block body %}
+
+{% if clientes%}
+  <table>
+    <thead>
+      <tr>
+        <<th>#</th>
+        <th>nombre</th>
+        <th>apellido</th>
+        <th>dni</th>
+        <th>direccion</th>
+        <th>correo</th>
+        <th>edad</th>
+      </tr>
+    </thead>
+    <tb>
+      {% for cliente in clientes %}
+      <tr>
+        <td>{{cliente.id}}</td>
+        <td>{{cliente.nombre}}</td>
+        <td>{{cliente.apellido}}</td>
+        <td>{{cliente.dni}}</td>
+        <td>{{cliente.direccion}}</td>
+        <td>{{cliente.correo}}</td>
+        <td>{{cliente.edad}}</td>
+      </tr>
+      {% endfor %}
+    </tb>
+  </table>
+{%else%}
+
+<h1> no existen clientes registrados</h1>
+{% endif %}
+
+
+{%endblock body%}
