@@ -17,6 +17,7 @@
         <th>direccion</th>
         <th>correo</th>
         <th>edad</th>
+        <th>opciones</th>
       </tr>
     </thead>
     <tb>
@@ -29,6 +30,9 @@
         <td>{{cliente.direccion}}</td>
         <td>{{cliente.correo}}</td>
         <td>{{cliente.edad}}</td>
+        <td>
+        <a href="{% url 'Clientes:editar_cliente' cliente.dni %}" > Editar </a>
+        </td>
       </tr>
       {% endfor %}
     </tb>
