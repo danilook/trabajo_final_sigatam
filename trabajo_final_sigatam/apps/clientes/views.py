@@ -36,7 +36,7 @@ def editarCliente(request,dni):                              #funcion para edita
 
     return render(request,'clientes/crear_cliente.html',{'cliente_form': cliente_form, 'error':error})
 
-def eliminarCliente(request,id):                                  #Funcion para eliminar un cliente de la base de datos#
-    cliente = Cliente.objects.get(id = id)                        #Traemos los clientes de la BD por id #
+def eliminarCliente(request,id_cliente):                                  #Funcion para eliminar un cliente de la base de datos#
+    cliente = Cliente.objects.get(id_cliente = id_cliente)                        #Traemos los clientes de la BD por id #
     cliente.delete()
     return redirect('clientes:listar_cliente')

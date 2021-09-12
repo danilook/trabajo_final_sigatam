@@ -32,7 +32,7 @@
         <td>{{cliente.edad}}</td>
         <td>
         <a href="{% url 'Clientes:editar_cliente' cliente.dni %}" > Editar </a>
-        <a href="{% url 'Clientes:eliminar_cliente' cliente.id %}"> Eliminar </a>
+        <a href="{% url 'Clientes:eliminar_cliente' cliente.id_cliente %}" > Eliminar </a>
         </td>
       </tr>
       {% endfor %}
