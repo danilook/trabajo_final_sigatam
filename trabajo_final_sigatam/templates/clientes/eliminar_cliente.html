@@ -1,0 +1,17 @@
+{% extends 'index.html'%}
+
+{%block titulo%}
+    Eliminacion de cliente
+{%endblock titulo%}
+{% block body%}
+    <form method="POST">
+        {% csrf_token %}
+        <h2> Quiere eliminar este cliente  {{cliente.nombre}} ?</h2>
+          <button type="submit" >Eliminar</button>
+          
+          <a href="{url 'clientes:listar_cliente'}"> cancelar </a>
+
+    </form>
+
+
+{% endblock body %}
