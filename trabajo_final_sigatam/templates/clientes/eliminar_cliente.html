@@ -6,10 +6,9 @@
 {% block body%}
     <form method="POST">
         {% csrf_token %}
-        <h2> Quiere eliminar este cliente  {{cliente.nombre}} ?</h2>
+        <h2> Quiere eliminar este cliente  {{cliente.nombre}} ?</h2>           <!-- se pregunta si quiere eliminar a ese clientes y le pasamos el objeto que traemos de la bd       -->
           <button type="submit" >Eliminar</button>
-          
-          <a href="{url 'clientes:listar_cliente'}"> cancelar </a>
+          <a href="{% url 'Clientes:listar_cliente' %}" > Cancelar </a>     <!-- se pasa un url si decide cancelar -->
 
     </form>
 
