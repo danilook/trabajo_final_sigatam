@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.core.exceptions import ObjectDoesNotExist  # se importa una exeptions #
 from .forms import ClienteForm
 from .models import Cliente
+
 def Home(request):
     return render (request,'index.html')
 

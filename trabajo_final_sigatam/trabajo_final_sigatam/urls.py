@@ -20,5 +20,5 @@ from apps.clientes.views import Home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('clientes/', include(('apps.clientes.urls','Clientes'))),
-    path('home/', Home, name = 'index' ), 
+    path('home/', Home , name = 'index')  
 ]
