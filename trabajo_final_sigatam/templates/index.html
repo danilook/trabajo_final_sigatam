@@ -81,15 +81,15 @@
                     </li>
                     <li class="menu-title"></li><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i> clientes </a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i> Gestionar clientes </a>
                       <ul class="sub-menu children dropdown-menu">
-                              <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Crear Cliente</a></li>
-                              <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Listar Cliente</a></li>
+                              <li><i class=""></i><a href="{% url 'Clientes:crear_cliente'%}">Crear Cliente</a></li>
+                              <li><i class="fa fa-bars"></i><a href="{%url 'Clientes:listar_cliente'%}">Listar Cliente</a></li>
                               <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Eliminar Cliente</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Trabajos</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Gestionar empleados</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
                             <li><i class="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
@@ -258,7 +258,7 @@
             <!-- Animated -->
             <div class="animated fadeIn">
                 <!-- Widgets  -->
-                 <div class="row">
+          <!--       <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="card-body">
@@ -330,7 +330,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- /Widgets -->
                 <!--  Traffic  -->
                 <!--
@@ -395,7 +395,7 @@
                                 <div class="card-body">
                                     <h4 class="box-title">Orders </h4>
                                 </div>     -->
-                <!--                <div class="card-body--">  -->
+                <!--                <div class="card-body">  -->
                 <!--                    <div class="table-stats order-table ov-h">
                                         <table class="table ">
                                             <thead>
@@ -735,7 +735,7 @@
         <!-- /.content -->
 <!--         <div class="clearfix"></div>   -->
         <!-- Footer -->
-<    <!--     <footer class="site-footer">
+    <!--     <footer class="site-footer">
             <div class="footer-inner bg-white">
                 <div class="row">
                     <div class="col-sm-6">

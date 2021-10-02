@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from apps.clientes.views import Home
-
+from apps.clientes.views import Login
+from apps.proveedores.views import crearProveedor
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('clientes/', include(('apps.clientes.urls','Clientes'))),
-    path('home/', Home , name = 'index')  
+    path('home/', Home , name = 'index'),
+    path('login/',Login, name= 'login'),
+    path('proveedores/', include (('apps.proveedores.urls','Proveedores')))
 ]
