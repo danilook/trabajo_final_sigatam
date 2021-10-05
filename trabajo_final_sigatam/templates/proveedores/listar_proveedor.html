@@ -1,0 +1,90 @@
+{% load static%}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Listado proveedores</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{%static 'datatables_intro/bootstrap/css/bootstrap.min.css' %}">
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="{%static 'datatables_intro/main.css' %}">
+
+
+    <!--datables CSS básico-->
+    <link rel="stylesheet" type="text/css" href="{%static 'datatables_intro/datatables/datatables.min.css' %}"/>
+    <!--datables estilo bootstrap 4 CSS-->
+    <link rel="stylesheet"  type="text/css" href="{%static 'datatables_intro/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css' %}">
+
+  </head>
+
+  <body>
+  <!--   <header>
+         <h1 class="text-center text-light">Tutorial</h1>
+         <h2 class="text-center text-light">Cómo usar <span class="badge badge-danger">DATATABLES</span></h2>
+     </header> -->
+    <div style="height:50px"></div>
+
+    <!--Ejemplo tabla con DataTables-->
+    <div class="container">
+        <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive">
+                  {% if proveedores%}
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>nombre</th>
+                                <th>apellido</th>
+                                <th>dni</th>
+                                <th>telefono</th>
+                                <th>correo</th>
+                                <th>direccion</th>
+                                <th>categoria</th>
+                                <th>estado</th>
+                                <th>opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          {% for proveedor in proveedores %}
+                            <tr>
+                                <td>{{proveedor.id_proveedor}}</td>
+                                <td>{{proveedor.nombre}}</td>
+                                <td>{{proveedor.apellido}}</td>
+                                <td>{{proveedor.dni}}</td>
+                                <td>{{proveedor.telefono}}</td>
+                                <td>{{proveedor.correo}}</td>
+                                <td>{{proveedor.direccion}}</td>
+                                <td>{{proveedor.id_categoria}}</td>
+                                <td> {{proveedor.estado}}</td>
+                                <td>
+                                  <a href="{% url 'Proveedores:editar_proveedor' proveedor.id_proveedor %}" > Editar </a>
+                                  <a href="{% url 'Proveedores:eliminar_proveedor' proveedor.id_proveedor %}" > Eliminar </a>
+                                </td>
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+
+                       </table>
+                {%else%}
+                  <h1> no existen provedores registrados</h1>
+                {% endif %}
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="{%static 'datatables_intro/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{%static 'datatables_intro/popper/popper.min.js'%}"></script>
+    <script src="{%static 'datatables_intro/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- datatables JS -->
+    <script type="text/javascript" src="{%static 'datatables_intro/datatables/datatables.min.js'%}"></script>
+
+    <script type="text/javascript" src="{%static 'datatables_intro/main.js '%}"></script>
+
+
+  </body>
+</html>

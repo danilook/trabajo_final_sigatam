@@ -24,6 +24,7 @@ class Proveedor (models.Model):
     correo = models.CharField (max_length = 100 , blank= False, null= False)
     direccion = models.CharField (max_length = 250, blank= False, null= False)
     id_categoria = models.ForeignKey (categoria, null= True, on_delete=models.CASCADE)   #relacion entre modelos //proveedor - categoria// #
+    estado = models.BooleanField('Estado', default= True)
     class Meta:
         verbose_name = 'Proveedor'
         verbose_name_plural = 'Proveedores'
