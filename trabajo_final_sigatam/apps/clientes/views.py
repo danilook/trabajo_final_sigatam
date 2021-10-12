@@ -6,8 +6,6 @@ from .models import Cliente
 def Home(request):                              #funcion para renderizar template index#
     return render (request,'index.html')
 
-def Login (request):                                # Funcion para renderizar template login#
-    return render (request,'login.html')
 
 def crearCliente(request):                              #Funcion para crear un cliente #
     if request.method == 'POST':

@@ -1,20 +1,28 @@
 from django.shortcuts import render,redirect
 from django.core.exceptions import ObjectDoesNotExist  # se importa una exeptions #
-from .forms import ProveedorForm
+from .forms import ProveedorForm, CategoriaForm
 from .models import Proveedor,categoria
 
+def altaCategoriaProveedor(request):
+    if request.method == 'POST':
+        categoria_form = CategoriaForm(request.POST)
+        if categoria_form.is_valid():
+            categoria_form.save()
+            return redirect ('index')
+    else:
+        categoria_form = CategoriaForm()
 
+    return render (request, 'proveedores/alta_categoria_proveedor.html',{'categoria_form': categoria_form})
 
 def crearProveedor(request):                              #Funcion para crear un proveedor #
     if request.method == 'POST':
         proveedor_form = ProveedorForm(request.POST)
         if proveedor_form.is_valid():
             proveedor_form.save()
-            return redirect('index')
+            return redirect('Provedores: listar_proveedor')
     else:
         proveedor_form = ProveedorForm()
-    return render (request,'proveedores/crear_proveedor.html',{'proveedor_form':proveedor_form})
-
+    return render (request,'proveedores/crear_proveedor.html',{'proveedor_form': proveedor_form})
 
 def listarProveedor(request):
     proveedores = Proveedor.objects.filter(estado = True)

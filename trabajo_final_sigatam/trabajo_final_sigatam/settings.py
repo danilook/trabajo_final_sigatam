@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.repuestos',
     'apps.trabajos',
     'apps.turnos',
+    'apps.usuario',
 
 ]
 
