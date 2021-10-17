@@ -3,6 +3,7 @@ from .views import crearProveedor,listarProveedor,editarProveedor,eliminarProvee
 
 
 urlpatterns =[
+
     path('crear_proveedor/', crearProveedor, name =  'crear_proveedor'),
     path( 'listar_proveedor/', listarProveedor, name = 'listar_proveedor'),
     path( 'editar_proveedor/<int:id_proveedor>', editarProveedor, name = 'editar_proveedor' ),

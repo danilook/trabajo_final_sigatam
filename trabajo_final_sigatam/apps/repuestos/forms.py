@@ -1,22 +1,24 @@
-from django.forms import *
+
+from django import forms
 from .models import Compra,Repuesto
+from apps.proveedores.models import categoria
+
+class CompraForm(forms.ModelForm):
+     class Meta:
+         model = Compra
+         fields = '__all__'
+       # model = Compra
+       # cantidad = CharField(widget=TextInput(attrs={'class': 'form-control'}))
+       # fecha_compra = DateField(widget=DateTimeInput(attrs={'class': 'form-control'}))
 
 
-class CompraForm(Form):
-     # class Meta:
-     #     model = Compra
-     #     fields = '__all__'
-       cantidad = CharField(widget=TextInput(attrs={'class': 'form-control'}))
-       fecha_compra = DateField(widget=DateTimeInput(attrs={'class': 'form-control'}))
-       id_repuesto = ModelChoiceField(queryset= Repuesto.objects.all() ,widget=Select(attrs={'class': 'form-control'}))
 
 
 
 
 
-#
-#
-# class AltaRepuestoForm(forms.ModelForm):
-#     class Meta:
-#         model = Repuesto
-#         fields = '__all__'
+
+class AltaRepuestoForm(forms.ModelForm):
+    class Meta:
+        model = Repuesto
+        fields = '__all__'

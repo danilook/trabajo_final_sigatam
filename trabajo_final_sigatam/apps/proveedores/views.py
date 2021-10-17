@@ -19,7 +19,7 @@ def crearProveedor(request):                              #Funcion para crear un
         proveedor_form = ProveedorForm(request.POST)
         if proveedor_form.is_valid():
             proveedor_form.save()
-            return redirect('Provedores: listar_proveedor')
+            return redirect('Proveedores:listar_proveedor')
     else:
         proveedor_form = ProveedorForm()
     return render (request,'proveedores/crear_proveedor.html',{'proveedor_form': proveedor_form})
@@ -50,5 +50,5 @@ def eliminarProveedor(request,id_proveedor):
         if request.method == 'POST' :
             proveedor.estado = False
             proveedor.save()
-            return redirect ('Provedores: listar_proveedor')
+            return redirect ('Proveedores:listar_proveedor')
         return render (request,'Proveedores/eliminar_proveedor.html',{'proveedor':proveedor})

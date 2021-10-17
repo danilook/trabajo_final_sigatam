@@ -20,16 +20,17 @@ from django.contrib.auth.decorators import login_required  #importamos la clase 
 from apps.clientes.views import Home
 from apps.proveedores.views import crearProveedor,listarProveedor,eliminarProveedor,altaCategoriaProveedor
 from apps.usuario.views import Login,logoutUsuario
-from apps.repuestos.views import altaCompraView
+from apps.repuestos.views import altaCompra, altaRepuesto
+from apps.empleados.views import crearEmpleado
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('repuestos/', altaCompraView.as_view()),
     path('clientes/', include(('apps.clientes.urls','Clientes'))),
     path('home/', Home , name = 'index'),
     path('proveedores/', include (('apps.proveedores.urls','Proveedores'))),
     path('accounts/login/',Login.as_view(), name = 'login'),
     path('logout/',login_required(logoutUsuario),name = 'logout'),
-    # path('repuestos/', include(('apps.repuestos.urls', 'Repuestos'))),
+    path('repuestos/', include(('apps.repuestos.urls','Repuestos'))),
+    path('empleados/', include(('apps.empleados.urls','Empleados'))),
 
 
 ]
