@@ -207,7 +207,9 @@
           </div>
       </div>
   </header>
-  <div class="content">
+
+  <!-- <div class="content">
+
     <form method="POST">
         {% csrf_token %}
         {%if error%}
@@ -218,7 +220,30 @@
         {% endif %}
 
     </form>
+  </div> -->
+  <div class="content">
+
+      {% csrf_token %}
+      {%if error%}
+        <h2> {{error}} </h2>
+      {% else %}
+        <div class="card-header">
+          <strong>Formulario de Alta categoria proveedor</strong>
+        </div>
+        <div class="card-body car-block">
+                <form class="#"  method="post" enctype="multipart/form-data" class="form-horizontal">
+                          <div class="row form-group">
+                            <div class="col-col -md -3 ">{{categoria_form.nombre.label}}</div>
+                            <div class="col-12 col-md-9">{{categoria_form.nombre}}</div>
+                          </div>
+                          <button type="submit" class="btn btn-primary " >Crear</button>
+                          <a href="{% url 'Proveedores:listar_proveedor'%}" class="btn btn-danger">Cancelar</a>
+                </form>
+
+        </div>
+       {%endif%}
   </div>
+
 {% endblock body %}
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>

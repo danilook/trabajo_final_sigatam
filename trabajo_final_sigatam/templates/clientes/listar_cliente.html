@@ -1,47 +1,195 @@
 {% extends 'index.html'%}
+{% load static%}
 
-{%block titulo%}
-  listado de Clientes
-{%endblock titulo%}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{%block body %}
+    {%block titulo%}
+      Listado clientes
+    {%endblock titulo%}
 
-{% if clientes%}
-  <table>
-    <thead>
-      <tr>
-        <<th>#</th>
-        <th>nombre</th>
-        <th>apellido</th>
-        <th>dni</th>
-        <th>direccion</th>
-        <th>correo</th>
-        <th>edad</th>
-        <th>opciones</th>
-      </tr>
-    </thead>
-    <tb>
-      {% for cliente in clientes %}
-      <tr>
-        <td>{{cliente.id}}</td>
-        <td>{{cliente.nombre}}</td>
-        <td>{{cliente.apellido}}</td>
-        <td>{{cliente.dni}}</td>
-        <td>{{cliente.direccion}}</td>
-        <td>{{cliente.correo}}</td>
-        <td>{{cliente.edad}}</td>
-        <td>
-        <a href="{% url 'Clientes:editar_cliente' cliente.dni %}" > Editar </a>
-        <a href="{% url 'Clientes:eliminar_cliente' cliente.id_cliente %}" > Eliminar </a>
-        </td>
-      </tr>
-      {% endfor %}
-    </tb>
-  </table>
-{%else%}
-
-<h1> no existen clientes registrados</h1>
-{% endif %}
+    {%block extracss%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{%static 'datatables_intro/bootstrap/css/bootstrap.min.css' %}">
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="{%static 'datatables_intro/main.css' %}">
 
 
-{%endblock body%}
+    <!--datables CSS básico-->
+    <link rel="stylesheet" type="text/css" href="{%static 'datatables_intro/datatables/datatables.min.css' %}"/>
+    <!--datables estilo bootstrap 4 CSS-->
+    <link rel="stylesheet"  type="text/css" href="{%static 'datatables_intro/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css' %}">
+
+    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="shortcut icon" href="{%static 'images/icons8-tools-64.png '%}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/cs-skin-elastic.css' %}">  <!-- LE INDICAMOS A DJANGO DONDE ESTAN NUESTROS ARCHIVOS ESTATICOS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" /> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" /> -->
+
+
+{%endblock extracss%}
+{% block body%}
+<!-- Left Panel -->
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Inicio </a>
+                </li>
+                <li class="menu-title"></li><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i> Gestionar Empleados </a>
+                  <ul class="sub-menu children dropdown-menu">
+                          <li><i class="fa fa-bars"></i><a href="{%url 'Empleados:crear_empleado' %}">Registrar empleado</a></li>
+                          <li><i class="fa fa-bars"></i><a href="{%url 'Empleados:listar_empleado'%}">Listar empleado</a></li>
+                          <li><i class="fa fa-bars"></i><a href="{%url 'Empleados:alta_rol' %}">Alta rol empleado</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Gestionar Clientes</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a href="{%url 'Clientes:crear_cliente'%}">Crear cliente </a></li>
+                        <li><i class="fa fa-table"></i><a href="{%url 'Clientes:listar_cliente'%}">Listar cliente </a></li>
+                    </ul>
+                </li>
+            <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Generar presupuesto</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-th"></i><a href="">Generar presupuesto final</a></li>
+
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Ver trabajos</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a href="">Listado de trabajos </a></li>
+
+                    </ul>
+
+
+            </ul>
+        </div>                        <!--/.navbar-collapse -->
+    </nav>
+</aside>
+<!-- /#left-panel -->
+<!-- Right Panel -->
+<div id="right-panel" class="right-panel">
+<header id="header" class="header">
+      <div class="top-left">
+          <div class="navbar-header">
+              <a class="navbar-brand" href="./"><img src="{% static 'images/Captura.png' %}" alt="Logo"></a>
+              <a class="navbar-brand hidden" href="./"><img src="{% static 'images/logo2.png'%}" alt="Logo"></a>
+              <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+          </div>
+      </div>
+      <div class="top-right">
+          <div class="header-menu">
+              <div class="header-left">
+                <button class="search-trigger"><i class="fa fa-search"></i></button>
+                  <div class="form-inline">
+                     <form class="search-form">
+                          <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                          <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                      </form>
+                  </div>
+
+              <div class="user-area dropdown float-right">
+                  <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img class="user-avatar rounded-circle" src="{%static 'images/logoUsuario.png' %}" alt="User Avatar">
+                  </a>
+
+                  <div class="user-menu dropdown-menu">
+                      <a class="nav-link" href="#"><i class="fa fa- user"></i>Mi perfil</a>
+
+                      <a class="nav-link" href="#"><i class="fa fa- user"></i>Notificacioes <span class="count">13</span></a>
+
+                      <a class="nav-link" href="#"><i class="fa fa -cog"></i>Configuracion</a>
+
+                      <a class="nav-link" href="{%url 'logout'%}"><i class="fa fa-power -off"></i> Salir de la cuenta</a>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </header>
+
+    <div style="height:50px"></div>
+
+    <!--Ejemplo tabla con DataTables-->
+    <div class="container">
+        <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive">
+                  {% if clientes%}
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>nombre</th>
+                                <th>apellido</th>
+                                <th>dni</th>
+                                <th>direccion</th>
+                                <th>correo</th>
+                                <th>edad</th>
+                                <th>opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          {% for cliente in clientes %}
+                            <tr>
+                              <td>{{cliente.id_cliente}}</td>
+                              <td>{{cliente.nombre}}</td>
+                              <td>{{cliente.apellido}}</td>
+                              <td>{{cliente.dni}}</td>
+                              <td>{{cliente.direccion}}</td>
+                              <td>{{cliente.correo}}</td>
+                              <td>{{cliente.edad}}</td>
+                                <td>
+                                  <a href=""  class  = "btn btn-primary "> Editar </a>
+                                  <a href=""class  = "btn btn-danger " > Eliminar </a>
+                                </td>
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+
+                       </table>
+                {%else%}
+                  <h1> no existen clientes registrados</h1>
+                {% endif %}
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% block extrajs%}
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+<script src="{% static 'assets/js/main.js'%}"></script>
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="{%static 'datatables_intro/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{%static 'datatables_intro/popper/popper.min.js'%}"></script>
+    <script src="{%static 'datatables_intro/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- datatables JS -->
+    <script type="text/javascript" src="{%static 'datatables_intro/datatables/datatables.min.js'%}"></script>
+
+    <script type="text/javascript" src="{%static 'datatables_intro/main.js '%}"></script>
+
+{% endblock extrajs%}

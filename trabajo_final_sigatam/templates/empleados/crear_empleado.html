@@ -40,9 +40,16 @@
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i> Gestionar Empleados </a>
                   <ul class="sub-menu children dropdown-menu">
-                          <li><i class="fa fa-bars"></i><a href="">Registrar empleado</a></li>
-                          <li><i class="fa fa-bars"></i><a href="">Listar empleado</a></li>
-
+                          <li><i class="fa fa-bars"></i><a href="{%url 'Empleados:crear_empleado' %}">Registrar empleado</a></li>
+                          <li><i class="fa fa-bars"></i><a href="{%url 'Empleados:listar_empleado'%}">Listar empleado</a></li>
+                          <li><i class="fa fa-bars"></i><a href="{%url 'Empleados:alta_rol' %}">Alta rol empleado</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Gestionar Clientes</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a href="{%url 'Clientes:crear_cliente'%}">Crear cliente </a></li>
+                        <li><i class="fa fa-table"></i><a href="{%url 'Clientes:listar_cliente'%}">Listar cliente </a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
@@ -108,7 +115,9 @@
           </div>
       </div>
   </header>
-
+  <div class="card-header">
+    <strong>Formulario de Alta empleados</strong>
+  </div>
   <div class="content">
     <form method="POST" action="." enctype="mmultipart/form-data">
       {% csrf_token %}

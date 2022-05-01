@@ -7,6 +7,7 @@ class Repuesto (models.Model) :
     nombre = models.CharField ('nombre',max_length= 200, blank= False, null= False)
     stock = models.IntegerField(default= 0 )
     id_categoria = models.ForeignKey (categoria, null= True, on_delete=models.CASCADE)
+    estado = models.BooleanField('Estado', default= True)
 
     class Meta:
        verbose_name = 'Repuesto'
@@ -18,6 +19,7 @@ class Repuesto (models.Model) :
 class Faltante (models.Model)  :
     id_faltante = models.AutoField (primary_key = True)
     faltante = models.CharField ('faltante', max_length = 200, blank = False, null = False)
+    estado = models.BooleanField('Estado', default= True)
     class Meta:
         verbose_name = 'Faltente'
         verbose_name_plural = 'Faltantes'
@@ -31,6 +33,7 @@ class Compra (models.Model) :
     fecha_compra= models.DateField  ('fecha compra ', blank= False, null= False )
     id_repuesto = models.ForeignKey (Repuesto,null= True, on_delete= models.CASCADE)
     id_proveedor = models.ForeignKey (Proveedor, null= True, on_delete= models.CASCADE)
+    estado = models.BooleanField('Estado', default= True)
 
     class Meta:
         verbose_name = 'Compra'

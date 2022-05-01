@@ -22,6 +22,7 @@ class Empleado(models.Model):
   id_rol = models.ForeignKey (rolEmpleado, null= True, on_delete=models.CASCADE)
   fecha_alta = models.DateField(blank = False, null = False)
   reputacion = models.IntegerField ()
+  estado = models.BooleanField('Estado', default= True)
   class meta:
     verbose_name = 'Empleado'
     verbose_name_plural = 'Empleados'

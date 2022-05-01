@@ -6,9 +6,9 @@ from .models import Proveedor,categoria
 def altaCategoriaProveedor(request):
     if request.method == 'POST':
         categoria_form = CategoriaForm(request.POST)
-        if categoria_form.is_valid():
+        if categoria_form.is_valid() :
             categoria_form.save()
-            return redirect ('index')
+            return redirect ('Proveedores:listar_proveedor')
     else:
         categoria_form = CategoriaForm()
 
