@@ -4,6 +4,7 @@ import datetime
 class rolEmpleado(models.Model):
     id_rol= models.AutoField(primary_key = True)
     nombre = models.CharField(max_length = 200, blank = False, null= False)
+    estado = models.BooleanField('Estado', default= True)
     class meta:
         verbose_name = 'rol empleado'
         verbose_name_plural= 'rol empleados'

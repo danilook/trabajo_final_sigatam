@@ -115,7 +115,8 @@
           </div>
       </div>
   </header>
-
+  
+<div style="height:50px"></div>
   <div class="container">
       <div class="row">
               <div class="col-lg-12">
@@ -164,4 +165,19 @@
 
 {% endblock body %}
 {% block extrajs %}
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+<script src="{% static 'assets/js/main.js'%}"></script>
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="{%static 'datatables_intro/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{%static 'datatables_intro/popper/popper.min.js'%}"></script>
+    <script src="{%static 'datatables_intro/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- datatables JS -->
+    <script type="text/javascript" src="{%static 'datatables_intro/datatables/datatables.min.js'%}"></script>
+
+    <script type="text/javascript" src="{%static 'datatables_intro/main.js '%}"></script>
+
 {% endblock extrajs%}

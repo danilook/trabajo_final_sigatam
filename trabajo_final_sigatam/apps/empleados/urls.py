@@ -8,4 +8,5 @@ urlpatterns = [
   path('eliminar_empleado/<int:id_empleado>', eliminarEmpleado, name = 'eliminar_empleado' ),
   path('alta_rol/',altaRol, name = 'alta_rol')
 
+
 ]

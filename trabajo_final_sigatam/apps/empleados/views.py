@@ -8,25 +8,30 @@ def crearEmpleado(request):                              #Funcion para crear un 
     if request.method == 'POST':
         empleado_form = empleadoForm(request.POST)
         if empleado_form.is_valid():
-            empleado_form.save()
-            return redirect('index')
+                empleado_form.save()
+                return redirect('Empleados:listar_empleado')
     else:
         empleado_form = empleadoForm()
     return render (request,'empleados/crear_empleado.html',{'empleado_form':empleado_form})
                                                     #Funcion para dar el alta rol#
 def altaRol(request):
-    if request.method == 'POST':                        # se pregunta por el metodo #
+
+    if request.method == 'POST':                                                # se pregunta por el metodo #
         rol_form = rolForm(request.POST)
         if rol_form.is_valid():
-            rol_form.save()                             # se guardan los cambios en la base de datos#
-            return redirect('Empleados:listar_empleado')                    # se redirecciona a la url especificada #
+             rol_form.save()                                                     # se guardan los cambios en la base de datos#
+             return redirect('Empleados:listar_empleado')                        # se redirecciona a la url especificada #
     else:
             rol_form = rolForm()
-    return render (request,'empleados/alta_rol.html',{'rol_form':rol_form})
+    roles = rolEmpleado.objects.filter(estado = True)                           # se obtienen los datos de la base de datos    #
+    return render (request,'empleados/alta_rol.html',{'rol_form':rol_form,'roles':roles})   # se envia la variable al template#
+
 
 def listarEmpleado(request):
-    empleados = Empleado.objects.filter(estado = True)
-    return render (request,'empleados/listar_empleado.html',{'empleados': empleados})
+    empleados = Empleado.objects.filter(estado = True) #variable empleados trae los datos de la base de datos #
+    return render (request,'empleados/listar_empleado.html',{'empleados': empleados})   # se envia la variable al template#
+
+
 
 def editarEmpleado(request,id_empleado):                              #funcion para editar un proveedores#
     empleado_form = None

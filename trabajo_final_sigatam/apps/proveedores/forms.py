@@ -23,13 +23,13 @@ class ProveedorForm(forms.ModelForm):
         model = Proveedor
         fields = '__all__'
         labels = {
-            'nombre':'Nombre del proveedor',
-            'apellido':'Apellido del proveedor',
-            'dni': 'Dni del proveedor',
-            'telefono':'telefono del proveedor',
-            'correo':'correo del proveedor',
-            'direccion':'direccion del proveedor',
-            'id_categoria':'categoria del proveedor',
+            'nombre':'Nombre ',
+            'apellido':'Apellido ',
+            'dni': 'Dni ',
+            'telefono':'Telefono ',
+            'correo':'Correo ',
+            'direccion':'Direccion ',
+            'id_categoria':'Categoria ',
 
         }
         widgets = {
