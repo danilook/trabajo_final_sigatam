@@ -1,0 +1,184 @@
+{% extends 'index.html'%}
+{% load static %}
+
+{%block titulo%}
+    Listado turno
+{%endblock titulo%}
+{%block extracss%}
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
+<link rel="shortcut icon" href="{%static 'images/icons8-tools-64.png '%}">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
+<link rel="stylesheet" href="{% static 'assets/css/cs-skin-elastic.css' %}">  <!-- LE INDICAMOS A DJANGO DONDE ESTAN NUESTROS ARCHIVOS ESTATICOS -->
+<link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+<link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
+
+
+
+
+{%endblock extracss%}
+{% block body%}
+<!-- panel izquierdo empieza -->
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="index.html"><i class="<!--menu-icon fa fa-laptop-->"></i>Inicio </a>
+                </li>
+                <li class="menu-title"></li><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i> Turnos </a>
+                  <ul class="sub-menu children dropdown-menu">
+                          <li><i class="fa fa-bars"></i><a href="{%url 'Turnos:registrar_turno' %}">Obtener turno</a></li>
+                          <li><i class="fa fa-bars"></i><a href="">Cancelar turno</a></li>
+                          <li><i class="fa fa-bars"></i><a href="{%url 'Turnos:listar_turno' %}">Listar turno</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Seguimiento trabajos</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a href=""></a></li>
+                        <li><i class="fa fa-table"></i><a href=""></a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Presupuesto</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a href=""></a></li>
+
+                    </ul>
+                </li>
+            <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Motovehiculo</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-th"></i><a href=""></a></li>
+
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Mis datos</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-th"></i><a href=""></a></li>
+
+                        </ul>
+                    </li>
+
+
+            </ul>
+        </div>                        <!--/.navbar-collapse -->
+    </nav>
+</aside>
+<!-- Panel izquierdo termina -->
+<!-- Panel derecho empieza -->
+<div id="right-panel" class="right-panel">
+<header id="header" class="header">
+      <div class="top-left">
+          <div class="navbar-header">
+              <a class="navbar-brand" href="./"><img src="{% static 'images/Captura.png' %}" alt="Logo"></a>
+              <a class="navbar-brand hidden" href="./"><img src="<!--{% static 'images/logo2.png'%}-->" alt="Logo"></a>
+              <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+          </div>
+      </div>
+      <div class="top-right">
+          <div class="header-menu">
+              <div class="header-left">
+                 <button class="search-trigger"><i class="fa fa-search"></i></button>
+                  <div class="form-inline">
+                     <form class="search-form">
+                          <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                          <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                      </form>
+                  </div>
+
+
+
+              <div class="user-area dropdown float-right">
+                  <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img class="user-avatar rounded-circle" src="{%static 'images/logoUsuario.png' %}" alt="User Avatar">
+                  </a>
+
+                  <div class="user-menu dropdown-menu">
+                      <a class="nav-link" href="#"><i class="fa fa- user"></i>Mi perfil</a>
+
+                      <a class="nav-link" href="#"><i class="fa fa- user"></i>Notificacioes <span class="count">13</span></a>
+
+                      <a class="nav-link" href="#"><i class="fa fa -cog"></i>Configuracion</a>
+
+                      <a class="nav-link" href="#"><i class="fa fa-power -off"></i> Salir de la cuenta</a>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </header>
+  <div style="height:50px"></div>
+
+  <!--Ejemplo tabla con DataTables-->
+  <div class="container">
+      <div class="row">
+              <div class="col-lg-12">
+                  <div class="table-responsive">
+                {% if turnos%}
+                      <table id="example" class="table table-striped table-bordered" style="width:100%">
+                      <thead>
+                          <tr>
+                              <th># id turno </th>
+                              <th># id tipo de turno</th>
+                              <th>Fecha</th>
+                              <th>Estado</th>
+                              <th>opciones</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        {% for turno in turnos %}
+                          <tr>
+                            <td>{{turno.id_turno}}</td>
+                            <td>{{turno.id_tipoTurno}}</td>
+                            <td>{{turno.fecha_turno}}</td>
+                            <td>{{turno.estado}}</td>
+                              <td>
+                                <a href=""  class  = "btn btn-primary "> Editar </a>
+                                <a href=""class  = "btn btn-danger " > Eliminar </a>
+                              </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+
+                     </table>
+              {%else%}
+                <h1> no existen turnos registrados hasta el momento</h1>
+              {% endif %}
+                  </div>
+              </div>
+      </div>
+  </div>
+{% endblock body %}
+
+{% block extrajs%}
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+<script src="{% static 'assets/js/main.js'%}"></script>
+  <!-- jQuery, Popper.js, Bootstrap JS -->
+  <script src="{%static 'datatables_intro/jquery/jquery-3.3.1.min.js' %}"></script>
+  <script src="{%static 'datatables_intro/popper/popper.min.js'%}"></script>
+  <script src="{%static 'datatables_intro/bootstrap/js/bootstrap.min.js' %}"></script>
+
+  <!-- datatables JS -->
+  <script type="text/javascript" src="{%static 'datatables_intro/datatables/datatables.min.js'%}"></script>
+
+  <script type="text/javascript" src="{%static 'datatables_intro/main.js '%}"></script>
+
+{% endblock extrajs%}

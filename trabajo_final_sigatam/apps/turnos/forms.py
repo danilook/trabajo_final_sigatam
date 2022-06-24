@@ -22,7 +22,7 @@ class turnoForm (forms.ModelForm):
                 attrs = {
                   'class':'form-control',
                   'placeholder': 'Seleccione la fecha en que desea su turno',
-                  'type':'date-time',
+                  'type':'Date',
                   'id':'fecha_turno'
                 }
             )

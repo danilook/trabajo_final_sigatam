@@ -14,7 +14,8 @@ class tipoTurno(models.Model):
 class Turno (models.Model):
     id_turno = models.AutoField (primary_key= True)
     id_tipoTurno = models.ForeignKey (tipoTurno, null= True, on_delete=models.CASCADE)
-    fecha_turno = models.DateTimeField('Fecha del turno' , blank= False, null=False)
+    fecha_turno = models.DateTimeField('Fecha del turno' , blank= False, null=False, auto_now=False)
+    estado = models.BooleanField('Estado', default= True)
     class meta:
         verbose_name = 'Turno'
         verbose_name_plural = 'Turnos'
